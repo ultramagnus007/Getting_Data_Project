@@ -1,8 +1,6 @@
-
-
 data_folder = "./UCI\ HAR\ Dataset"
-
 #getting the features from features.txt
+
 getfeatures<-function()
 {
 	#reading featureNo and feature name from "features.txt"
