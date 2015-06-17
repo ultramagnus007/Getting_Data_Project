@@ -105,6 +105,8 @@ get_tidy_data<-function(testtrain)
 	#adding the descriptive column names in tidy data
 	COLNAMES<-read.table("./Colnames.txt")
 	colnames(tidydata)<-COLNAMES$V1
+	#making the activity_name variable lowercase
+	tidydata <- mutate(tidydata, activity_name = tolower(activity_name))
 	tidydata
 }
 
