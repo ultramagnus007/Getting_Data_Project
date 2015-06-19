@@ -54,14 +54,18 @@ get_train_data<-function(meanstd)
 combine_test_train<-function(test, train)
 {
 	#reading test activity number
-	testact_num<-read.table(paste0(data_folder, "/test/y_test.txt"), col.names=c("activity_num"))
+	testact_num<-read.table(paste0(data_folder, "/test/y_test.txt"), 
+					col.names=c("activity_num"))
 	#reading test subject number
-	testsubject_num<-read.table(paste0(data_folder, "/test/subject_test.txt"), col.names=c("subject_num"))
+	testsubject_num<-read.table(paste0(data_folder, "/test/subject_test.txt"),
+					col.names=c("subject_num"))
 
 	#reading train activity number
-	trainact_num<-read.table(paste0(data_folder, "/train/y_train.txt"),col.names=c("activity_num"))
+	trainact_num<-read.table(paste0(data_folder, "/train/y_train.txt"),
+					col.names=c("activity_num"))
 	#reading train subject number
-	trainsubject_num<-read.table(paste0(data_folder, "/train/subject_train.txt"), col.names=c("subject_num"))
+	trainsubject_num<-read.table(paste0(data_folder, "/train/subject_train.txt"),
+					col.names=c("subject_num"))
 
 	#adding  subject_num and activity_num column in both train and test
 	test$subject_num = testsubject_num$subject_num
@@ -78,7 +82,8 @@ combine_test_train<-function(test, train)
 add_activity_name<-function(testtrain)
 {
 	#reading labels which has activity number and activity name columns
-	labels<-read.table(paste0(data_folder, "/activity_labels.txt"), col.names=c("activity_num", "actvity_name"))
+	labels<-read.table(paste0(data_folder, "/activity_labels.txt"), 
+				col.names=c("activity_num", "actvity_name"))
 	library(plyr)
 	#joining the labels and testtrain based on common column 'activity_num'
 	#so resulting data frame has 'actvity_name' column in it
@@ -111,10 +116,10 @@ get_tidy_data<-function(testtrain)
 }
 
 library(data.table)
-#features is a vector character string  of all 561 features
+#features is a vector of character string  of all 561 features
 features<-getfeatures()
-#meanstd is vector of TRUE and FALSE, with TRUE when 'mean()', 'std()' occur in features
-#it has total 561 values out of which 66 TRUE values
+#meanstd is vector of TRUE and FALSE, it is TRUE when 'mean()', 
+#'std()' occur in features it has total 561 values out of which 66 TRUE values
 meanstd<-get_meanstd(features)
 #getting the test data
 test<-get_test_data(meanstd)
